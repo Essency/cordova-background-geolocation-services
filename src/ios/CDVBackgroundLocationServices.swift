@@ -360,7 +360,7 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
         interval = 1;
         syncSeconds = 1;
         desiredAccuracy = kCLLocationAccuracyBest;
-        distanceFilter = 0;
+        //distanceFilter = 0;
     }
 
     // Force here is to make sure we are only starting the location updates once, until we want to restart them
@@ -373,7 +373,8 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
             self.manager.delegate = self;
 
             self.manager.desiredAccuracy = self.lowPowerMode ? kCLLocationAccuracyThreeKilometers : desiredAccuracy;
-            self.manager.distanceFilter = self.lowPowerMode ? 10.0 : distanceFilter;
+            //self.manager.distanceFilter = self.lowPowerMode ? 10.0 : distanceFilter;
+			self.manager.distanceFilter = distanceFilter;
 
             self.manager.startUpdatingLocation();
             self.manager.startMonitoringSignificantLocationChanges();
