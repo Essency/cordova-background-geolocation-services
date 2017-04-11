@@ -190,7 +190,15 @@ public class BackgroundLocationUpdateService
             Notification.Builder builder = new Notification.Builder(this);
             builder.setContentTitle(notificationTitle);
             builder.setContentText(notificationText);
-            builder.setSmallIcon(context.getApplicationInfo().icon);
+            //builder.setSmallIcon(context.getApplicationInfo().icon);
+			int iconId = 0;
+			iconId = content.getResources().getIdentifier("logo_small", DRAWABLE, context.getPackageName());
+			if (iconId == 0) {
+				Log.d(this.getClass().getName(), "no icon resource found - using application icon");
+				iconId = context.getApplicationInfo().icon;
+			}
+			Log.d(this.getClass().getSimpleName(), "Small Icon ID: " + iconId);
+			builder.setSmallIcon(iconId);
 
             Bitmap bm = BitmapFactory.decodeResource(context.getResources(),
                                            context.getApplicationInfo().icon);
